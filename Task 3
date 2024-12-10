@@ -1,0 +1,121 @@
+-- TASK 3: PREFORM QUERIES
+
+-- 1.  Retrieve the first 5 members from the Member table.
+
+SELECT * FROM members LIMIT 5;
+
+-- 2. Retrieve 5 members starting from the 6th row.
+
+SELECT * FROM  members LIMIT 5 OFFSET 5;
+
+-- 3. List members who are older than 30 years.
+
+SELECT * FROM  members WHERE members_age >30;
+
+-- 4. Find members who live in either New York or Los Angeles.
+
+SELECT * FROM  members WHERE member_location = 'New York' OR member_location= 'los Angeles';
+
+-- 5. Retrieve all vehicles where the make is either 'Toyota' or 'Honda'.
+
+SELECT * FROM  vehicle WHERE vehicle_make ='Toyota' OR vehicle_make ='Honda';
+
+-- 6. Find members whose age is between 25 and 40 years.
+
+SELECT * FROM  members WHERE member_age >=25 AND member_age<=40
+
+-- 7. List vehicles whose registration number starts with the letter 'A'.
+
+SELECT * FROM vehicles WHERE vehicle_Registration LIKE 'A%';
+
+-- 8. Find vehicles where the model ends with the number '5'.
+
+SELECT * FROM vehicle WHERE vehicle_model LIKE %5;
+
+-- 9. List all engineers and order them alphabetically by their last name.
+
+SELECT * FROM  engineer ORDER BY last_name ASC;
+
+-- 10. Retrieve all members and order them by age in descending order.
+
+SELECT * FROM  MEMBER ORDER BY member_age DESC;
+
+-- 11. Count the total number of members in the Member table.
+
+SELECT count(*) AS 'Total number of members' from member;
+
+-- 12. Retrieve all breakdowns that occurred in the year 2024.
+
+SELECT * FROM breakdown WHERE YEAR (breakdown_date)='2024';
+
+-- 13. Find breakdowns for vehicles with the registration 'ABC1234' or 'XYZ5678'.
+
+SELECT * FROM breakdowns WHERE vehicle_registration= 'ABC1234' OR vehicle_registration='XYZ5678';
+
+-- 14. List all vehicles with the make 'Ford'.
+
+SELECT * FROM vehicles WHERE Vehicle_model= 'Ford';
+
+-- 15. Find members whose first name starts with the letter 'J'.
+
+SELECT * FROM member WHERE first_name 'J%';
+
+-- 16. Retrieve breakdowns that occurred before September 1, 2024.
+
+SELECT * FROM breakdowns WHERE breakdown_date<'2024-09-01';
+
+-- 17. List members whose last name contains 'son'.
+
+SELECT * FROM members WHERE last_name LIKE '%son%';
+
+-- 18. Find breakdowns that occurred in locations containing 'New'.
+
+SELECT * FROM breakdowns WHERE member_location LIKE '%New%';
+
+-- 19. Retrieve the youngest member in the Member table.
+
+SELECT * FROM member ORDER BY member_age ASC LIMIT 1;
+
+-- 20. Retrieve the oldest member in the Member table.
+
+SELECT * FROM member ORDER BY member_age DESC LIMIT 1;
+
+-- 21. Find vehicles owned by members who live in Los Angeles.
+
+SELECT vehicle.* FROM vehicle LEFT JOIN MEMBER ON vehicle.member_id=member.member_id WHERE member_location='Los Angeles';
+
+-- 22. Retrieve all breakdowns handled by engineer with ID 1.
+
+SELECT * FROM breakdowns WHERE engineer_id=1; 
+
+-- 23. List all members who are younger than 35 years.
+
+SELECT * FROM members WHERE member_age< '35';
+
+-- 24. Find members who live in either Phoenix or Houston.
+
+SELECT * FROM members WHERE member_location='Phoenix' OR member_location='Houston'; 
+
+-- 25. Retrieve vehicles where the model is either 'Civic' or 'Mustang'.
+
+SELECT * FROM vehicles WHERE vehicle_model= 'Civiv' OR vehicle_model= 'Mustang';
+
+-- 26. List members whose first name contains the letter 'a'.
+
+SELECT * FROM members WHERE first_name LIKE '%a%';
+
+-- 27. Retrieve breakdowns that occurred between August 1, 2024, and August 31, 2024.
+
+SELECT * FROM breakdowns WHERE breakdown_date> '2024-08-1' AND breakdown_date< '2024-08-31';
+
+-- 28. Find members whose age is not between 20 and 40 years.
+
+SELECT * FROM members WHERE member_age< '20' OR member_age> '40';
+
+-- 29. List breakdowns that occurred after October 1, 2024.
+
+SELECT * FROM breakdowns WHERE breakdown_date> '2024-10-1';
+
+-- 30. Retrieve the top 3 oldest members from the Member table.
+
+SELECT * FROM members ORDER BY member_age DESC LIMIT 3;
