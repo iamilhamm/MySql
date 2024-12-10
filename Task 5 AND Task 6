@@ -1,0 +1,26 @@
+SELECT AVG(Member_Age) AS Average_Age FROM Members;
+
+SELECT MAX(Member_Age) AS Oldest_Age FROM Members;
+
+SELECT MIN(Member_Age) AS Youngest_Age FROM Members;
+
+SELECT SUM(Member_Age) AS Total_Age FROM Members;
+
+
+UPDATE Engineers
+SET First_Name = 'Ethan', Last_Name = 'Williams'
+WHERE Engineer_ID = 1;
+
+UPDATE Engineers
+SET First_Name = 'Olivia', Last_Name = 'Miller'
+WHERE Engineer_ID = 2;
+
+UPDATE Engineers
+SET First_Name = 'Sophia', Last_Name = 'Clark'
+WHERE Engineer_ID = 3;
+
+DELETE FROM Breakdowns
+WHERE Breakdown_ID = 1;
+
+DELETE FROM Breakdowns
+WHERE Breakdown_ID = 2;
