@@ -1,0 +1,31 @@
+-- 1. Retrieve a list of members along with their vehicles using a join.
+
+SELECT * FROM Members JOIN vehicle ON Members.member_id=vehicle.member_id;
+
+-- 2. Retrieve breakdown details along with the respective member details using a join.
+
+SELECT breakdown.*, member.* FROM Breakdown breakdown JOIN Vehicles vehicle ON breakdown.vehicle_registration=vehicle.vehicle_registration JOIN Members member ON vehicle.member_id=member.member_id;
+
+-- 3. Find members who own a vehicle but have never experienced a breakdown.
+
+SELECT member.* FROM Members member LEFT JOIN Vehicles vehicle ON member.member_id = vehicle.member_id LEFT JOIN Breakdown breakdown ON vehicle.vehicle_registration = breakdown.vehicle_registration WHERE breakdown.breakdown_id IS NULL;
+
+-- 4. Retrieve vehicles along with the count of their breakdowns using a join and group by.
+
+SELECT vehicle.vehicle_registration, count(*) FROM vehicle LEFT JOIN breakdown ON vehicle.vehicle_registration=breakdown.vehicle_registration GROUP BY vehicle.vehicle_registration;
+
+-- 5. Find members whose vehicles have broken down more than twice.
+
+SELECT member.*, COUNT(breakdown.vehicle_registration) AS 'The number of times their car broke down' FROM breakdown JOIN member join vehicle ON vehicle.vehicle_registration=breakdown.vehicle_registration JOIN Members member ON vehicle.member_id=member.member_id GROUP BY member.member_id HAVING COUNT(breakdown.vehicle_registration)> 2;
+
+-- 6. Retrieve breakdowns where multiple vehicles broke down on the same day.
+
+SELECT * FROM breakdown WHERE breakdown_date IN (SELECT breakdown_date FROM breakdown GROUP BY breakdown_date HAVING COUNT(*)>1);
+
+-- 7. Count the total breakdowns handled by each engineer and label those who handled more than 5 breakdowns as 'Expert' and others as 'Beginner' using a CASE expression.
+
+SELECT engineer.*, COUNT(breakdown.engineer_id) AS 'Breakdown reapired per engineer' ,CASE WHEN COUNT(breakdown.engineer_id)>5 THEN 'Expert' ELSE 'Beginner' END AS 'Engineer Expertise Leve' GROUP BY engineer.engineer_id;
+
+-- 8. List all vehicles that have never had a breakdown using a subquery.
+
+SELECT * FROM ehicle WHERE vehicle_registration NOT IN (SELECT vehicle_registration FROM breakdown);
